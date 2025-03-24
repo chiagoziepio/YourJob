@@ -26,6 +26,10 @@ export async function GET() {
       }
     });
     // console.log(data.slice(0, 2));
+    const post = await db.jobs.findMany();
+    if (post.length > 0) {
+      return NextResponse.json({ msg: "data already exist" });
+    }
     await db.jobs.createMany({
       data: data,
       skipDuplicates: true,
