@@ -16,3 +16,11 @@ export interface JobPost {
   salary_to: number;
   employment_type: string;
 }
+
+export interface ApplicationFormSchema {
+  name: string;
+  email: string;
+
+  resume: string;
+  cover_letter: File;
+}

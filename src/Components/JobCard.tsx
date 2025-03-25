@@ -5,7 +5,9 @@ import { JobPost } from "@/Types/Types";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { format } from "date-fns";
 import { truncateText } from "@/lib/utils";
-import { Button, buttonVariants } from "./ui/button";
+import { buttonVariants } from "./ui/button";
+
+import AppliciationForm from "./AppliciationForm";
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -13,8 +15,6 @@ const itemVariants = {
 };
 
 const JobCard = ({ job }: { job: JobPost }) => {
-  //   console.log(job);
-
   return (
     <motion.div
       variants={itemVariants}
@@ -68,8 +68,11 @@ const JobCard = ({ job }: { job: JobPost }) => {
             >
               Details
             </Link>
+
+            <AppliciationForm name={job.title} jobId={job.id!} />
           </div>
         </div>
+        <span>{job.location}</span>
       </div>
     </motion.div>
   );
