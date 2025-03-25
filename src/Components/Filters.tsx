@@ -31,7 +31,7 @@ const Filters = ({
             setOpen={setIsDrawerOpen}
             setSalary={setSalary}
             setJobMode={setJobMode}
-            setLoction={setLocation}
+            setLocation={setLocation}
           />
         </div>
         <div className="hidden lg:block">

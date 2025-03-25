@@ -53,10 +53,10 @@ const Jobs = () => {
                 <div>No Jobs Found</div>
               ) : (
                 <div className="flex ">
-                  <div className=" p-3 hidden lg:flex flex-col gap-3">
+                  <aside className=" p-3 hidden lg:flex flex-col gap-3">
                     <SalaryFilter setSalary={setSalary} />
                     <SiteFilter setJobMode={setJobMode} />
-                  </div>
+                  </aside>
                   <div className="flex-1 flex flex-col gap-3">
                     <p className="mt-4 flex  items-center gap-1">
                       <span className="poppins-medium text-base">
@@ -72,24 +72,26 @@ const Jobs = () => {
               )}
             </div>
           )}
-          <div className="flex justify-center gap-4 pb-5">
-            <Button
-              size={"icon"}
-              disabled={isLoading || !data?.hasPrevious}
-              onClick={() => setPage((prev) => prev - 1)}
-              className="cursor-pointer"
-            >
-              <FaAngleLeft size={17} />
-            </Button>
-            <Button
-              size={"icon"}
-              disabled={isLoading || !data?.hasMore}
-              onClick={() => setPage((prev) => prev + 1)}
-              className="cursor-pointer"
-            >
-              <FaAngleRight size={17} />
-            </Button>
-          </div>
+          {!isLoading && jobData.length !== 0 && (
+            <div className="flex justify-center gap-4 pb-5">
+              <Button
+                size={"icon"}
+                disabled={isLoading || !data?.hasPrevious}
+                onClick={() => setPage((prev) => prev - 1)}
+                className="cursor-pointer"
+              >
+                <FaAngleLeft size={17} />
+              </Button>
+              <Button
+                size={"icon"}
+                disabled={isLoading || !data?.hasMore}
+                onClick={() => setPage((prev) => prev + 1)}
+                className="cursor-pointer"
+              >
+                <FaAngleRight size={17} />
+              </Button>
+            </div>
+          )}
         </section>
       </MaxWidthWrapper>
     </main>
