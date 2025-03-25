@@ -20,10 +20,12 @@ export async function GET(request: NextRequest) {
       filters.OR = [
         { title: { contains: search, mode: "insensitive" } },
         { description: { contains: search, mode: "insensitive" } },
-        { location: { contains: search, mode: "insensitive" } },
       ];
     }
-
+    // Filter by location if any
+    if (loactionQuery) {
+      filters.location = { contains: loactionQuery, mode: "insensitive" };
+    }
     // Filter by salary if any
     if (salary) {
       const salaryValue = parseInt(salary as string, 10);
@@ -36,8 +38,9 @@ export async function GET(request: NextRequest) {
       skip,
       orderBy: { createdAt: "desc" },
     });
+    const allJobs = await db.jobs.count();
     return NextResponse.json(
-      { msg: "Job retrieved successfully", data: jobs },
+      { msg: "Job retrieved successfully", data: jobs, count: allJobs },
       { status: 200 }
     );
   } catch (error) {

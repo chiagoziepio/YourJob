@@ -2,8 +2,8 @@ export interface JobPost {
   id?: string;
   title: string;
   description: string;
-  created_at?: Date;
-  updated_at?: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   is_remote_work: number;
   company: string;
   location: string;

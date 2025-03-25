@@ -11,8 +11,8 @@ export async function GET() {
     // console.log(res);
     const data: JobPost[] = res.data || [];
     data.forEach((data) => {
-      delete data.updated_at;
-      delete data.created_at;
+      delete data.updatedAt;
+      delete data.createdAt;
 
       delete data.id;
       if (typeof data.qualifications === "string") {
