@@ -7,7 +7,8 @@ export async function GET(request: NextRequest) {
   //getting all the query params
   const search = searchParams.get("search") || "";
   const page = searchParams.get("page") || 1;
-  const loactionQuery = searchParams.get("loaction") || "";
+  const loactionQuery = searchParams.get("location") || "";
+  const jobmodeQuery = searchParams.get("jobMode") || null;
   const salary = searchParams.get("salary") || "";
   const pageNumber = page ? parseInt(page as string, 10) : 1;
 
@@ -22,15 +23,28 @@ export async function GET(request: NextRequest) {
         { description: { contains: search, mode: "insensitive" } },
       ];
     }
+    // Filter by job mode if any
+    if (jobmodeQuery) {
+      console.log("seen");
+
+      filters.is_remote_work = parseInt(jobmodeQuery, 10);
+    }
+
     // Filter by location if any
     if (loactionQuery) {
       filters.location = { contains: loactionQuery, mode: "insensitive" };
     }
     // Filter by salary if any
     if (salary) {
-      const salaryValue = parseInt(salary as string, 10);
-      filters.salary_from = { lte: salaryValue };
-      filters.salary_to = { gte: salaryValue };
+      // Split the salary range into min and max values
+      const [minSalary, maxSalary] = salary
+        .split("_")
+        .map((s) => parseInt(s, 10));
+
+      filters.AND = [
+        { salary_from: { lte: maxSalary } },
+        { salary_to: { gte: minSalary } },
+      ];
     }
     const jobs = await db.jobs.findMany({
       where: filters,
@@ -39,8 +53,16 @@ export async function GET(request: NextRequest) {
       orderBy: { createdAt: "desc" },
     });
     const allJobs = await db.jobs.count();
+    const hasMore = skip + jobs.length < allJobs;
+    const hasPrevious = pageNumber > 1;
     return NextResponse.json(
-      { msg: "Job retrieved successfully", data: jobs, count: allJobs },
+      {
+        msg: "Job retrieved successfully",
+        data: jobs,
+        count: allJobs,
+        hasMore,
+        hasPrevious,
+      },
       { status: 200 }
     );
   } catch (error) {

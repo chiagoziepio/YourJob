@@ -66,6 +66,12 @@ const LocationFilter = ({ setLocation }: props) => {
         onScroll={handleScroll}
         className="max-h-[300px] overflow-y-auto"
       >
+        <DropdownMenuItem
+          onClick={() => setLocation("")}
+          className="cursor-pointer"
+        >
+          All
+        </DropdownMenuItem>
         {alllocations.map((location, index) => (
           <DropdownMenuItem onClick={() => setLocation(location)} key={index}>
             {location}

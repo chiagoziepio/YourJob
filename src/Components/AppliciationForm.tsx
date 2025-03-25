@@ -140,9 +140,9 @@ const AppliciationForm = ({ name, jobId }: props) => {
               onClick={handleCancel}
               variant={"ghost"}
               size={"sm"}
-              className="cursor-pointer"
+              className="cursor-pointer "
             >
-              x
+              x<span className="sr-only">close application form</span>
             </Button>
           </div>
         </DialogTitle>
