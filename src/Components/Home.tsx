@@ -11,6 +11,7 @@ import { FaAngleRight } from "react-icons/fa6";
 import SalaryFilter from "./FilterComponents/SalaryFilter";
 
 import SiteFilter from "./FilterComponents/SiteFilter";
+import JobDetailsSkeleton from "./Loading";
 
 const Jobs = () => {
   const [search, setSearch] = React.useState("");
@@ -46,7 +47,7 @@ const Jobs = () => {
             />
           </div>
           {isLoading ? (
-            <p className="p-5 open-sans-medium text-base">loading...</p>
+            <JobDetailsSkeleton />
           ) : (
             <div className="w-full ">
               {jobData.length === 0 ? (

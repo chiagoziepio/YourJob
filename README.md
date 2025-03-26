@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+The Project Name is "YourJob".
+The project was created by NDUAGUBA CHIAGOZIE CHRISTOPBHER, with email address : christopherpaddy2017@gmail.com
 
-## Getting Started
+Resources
+The Ui designed used in the project was gotten from the internet.
+A picture of the Ui design can be found in the project public folder.
+React-icons and Redix icon were the icon libraries used in the project.
+The Job listing data was gotten from the internet and save to the database.
+Here is the link to the data: https://jsonfakery.com/job-posts
 
-First, run the development server:
+Stacks
+Next 15 was used to create the project, leveraging its ability to integrate the backend with the frontend.
+React 19 which comes with Next 15 was used to create the frontend.
+Tailwind css and shadcn ui were used to style the frontend.
+React-hook-form was used to create the forms.
+Zod and zod-resolver were used to validate the forms.
+Prisma was used to create the database.
+Supabase was used to store the datas
+Redux toolkit was used to manage the state of the application.
+Framer motion was used to create the animations.
+Loadish.debounce was used to debounce the search input.
+The project was deployed on Vercel.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Functionality
+The data was fetched from a fake Api from the internet, retouched to matchh the design and saved to the database.
+The data was then fetched from the database and displayed on the frontend.
+The App comprises of 2 pages: Home and Job Details.
+The Home page which is the landing page, displays the job listings.
+The Job Details page displays the details of a particular job listing.
+There is an applcation form that enables the user to apply for a job.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Filters
+The Job listings can be filtered by job mode (Remote or Onsite), location, and salary.
+The user can also search for a job listing by job title or description.

@@ -267,12 +267,17 @@ const AppliciationForm = ({ name, jobId }: props) => {
                 type="button"
                 variant={"ghost"}
                 size={"lg"}
-                className="border border-muted-foreground"
+                className="border border-muted-foreground cursor-pointer"
                 onClick={handleCancel}
               >
                 Cancel
               </Button>
-              <Button type="submit" variant={"default"} size={"lg"}>
+              <Button
+                type="submit"
+                variant={"default"}
+                size={"lg"}
+                className="cursor-pointer"
+              >
                 Submit
               </Button>
             </div>
