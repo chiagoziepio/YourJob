@@ -32,3 +32,7 @@ There is an applcation form that enables the user to apply for a job.
 Filters
 The Job listings can be filtered by job mode (Remote or Onsite), location, and salary.
 The user can also search for a job listing by job title or description.
+
+Links
+github: https://github.com/chiagoziepio/YourJob
+LiveSite : https://your-job-amber.vercel.app/

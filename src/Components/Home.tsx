@@ -51,7 +51,9 @@ const Jobs = () => {
           ) : (
             <div className="w-full ">
               {jobData.length === 0 ? (
-                <div>No Jobs Found</div>
+                <p className="text-xl open-sans-semibold text-center my-10 ">
+                  No Jobs Found
+                </p>
               ) : (
                 <div className="flex ">
                   <aside className=" p-3 hidden lg:flex flex-col gap-3">

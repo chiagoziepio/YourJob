@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const AppApi = createApi({
   reducerPath: "appApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `http://localhost:3000/api`,
+    baseUrl: `https://your-job-amber.vercel.app/api`,
   }),
   endpoints: () => ({}),
   tagTypes: ["jobs"],
