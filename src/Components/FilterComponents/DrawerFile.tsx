@@ -18,6 +18,7 @@ interface props {
   setSalary: React.Dispatch<React.SetStateAction<string>>;
   setJobMode: React.Dispatch<React.SetStateAction<number | string>>;
   setLocation: React.Dispatch<React.SetStateAction<string>>;
+  location: string;
 }
 
 const DrawerFile = ({
@@ -26,6 +27,7 @@ const DrawerFile = ({
   setSalary,
   setJobMode,
   setLocation,
+  location,
 }: props) => {
   return (
     <Drawer
@@ -50,7 +52,7 @@ const DrawerFile = ({
           </DrawerDescription>
         </DrawerHeader>
         <div className="px-4 pb-7flex flex-col gap-4">
-          <LocationFilter setLocation={setLocation} />
+          <LocationFilter setLocation={setLocation} location={location} />
           <SalaryFilter setSalary={setSalary} />
           <SiteFilter setJobMode={setJobMode} />
         </div>

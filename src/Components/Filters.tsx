@@ -34,6 +34,7 @@ const Filters = ({
             setSalary={setSalary}
             setJobMode={setJobMode}
             setLocation={setLocation}
+            location={location}
           />
         </div>
         <div className="hidden lg:block">
