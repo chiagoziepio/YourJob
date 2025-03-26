@@ -2,7 +2,8 @@ The Project Name is "YourJob".
 The project was created by NDUAGUBA CHIAGOZIE CHRISTOPBHER, with email address : christopherpaddy2017@gmail.com
 
 Setup Instruction
-The project was created using the npx command :npx create-next-app
+The project was created using the npx command :npx create-next-app@latest
+But if you clone the project from the github repository, you can use the npm install command to install the dependencies.
 
 Resources
 The Ui designed used in the project was gotten from the internet.
