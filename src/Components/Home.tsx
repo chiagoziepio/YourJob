@@ -46,7 +46,7 @@ const Jobs = () => {
             />
           </div>
           {isLoading ? (
-            <p>loading...</p>
+            <p className="p-5 open-sans-medium text-base">loading...</p>
           ) : (
             <div className="w-full ">
               {jobData.length === 0 ? (

@@ -39,10 +39,10 @@ const JobCard = ({ job }: { job: JobPost }) => {
           {truncateText(job.description, 100)}
         </p>
         <div className="flex lg:justify-evenly justify-center md:flex-row md:gap-x-6.5 lg:gap-x-1.5 flex-col items-center gap-y-2 ">
-          <span className="bg-purple-200 text-purple-500 text-sm poppins-regular p-1.5  min-w-[80px] max-w-[100px] h-fit rounded-[30px] flex justify-center items-center">
+          <span className="bg-purple-200 text-purple-500 text-sm poppins-regular p-1.5 w-full  md:min-w-[80px] md:max-w-[100px] h-fit rounded-[30px] flex justify-center items-center">
             {job.is_remote_work === 1 ? "Remote" : "Onsite"}
           </span>
-          <span className="bg-green-100 text-green-500 text-sm poppins-regular p-1.5 w-[160px]   h-fit rounded-[30px] flex justify-center items-center truncate">
+          <span className="bg-green-100 text-green-500 text-sm poppins-regular p-1.5 md:w-[160px] w-full   h-fit rounded-[30px] flex justify-center items-center truncate">
             {job.employment_type}
           </span>
         </div>

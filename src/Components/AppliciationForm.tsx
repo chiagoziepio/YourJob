@@ -1,4 +1,11 @@
-import React, { useState } from "react";
+import { ZodApplicationFormSchema } from "@/Types/ZodSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Cloud } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
+import { Button } from "./ui/button";
 import {
   Dialog,
   DialogContent,
@@ -6,12 +13,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
-import { Button } from "./ui/button";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { ApplicationFormSchema } from "@/Types/Types";
 import { Textarea } from "./ui/textarea";
-import { toast } from "sonner";
-import { Cloud } from "lucide-react";
 
 interface props {
   jobId: string;
@@ -28,27 +30,49 @@ const AppliciationForm = ({ name, jobId }: props) => {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
-  } = useForm<ApplicationFormSchema>();
-  const onFinish: SubmitHandler<ApplicationFormSchema> = async (data) => {
-    if (!theFile) {
-      toast("error", {
-        description: "Please upload a file",
-        action: {
-          onClick: () => toast.dismiss(),
-          label: "Dismiss",
-        },
-      });
-      return;
-    }
-    const formData = new FormData();
-    formData.append("file", theFile!);
-    formData.append("jobId", jobId);
+  } = useForm<z.infer<typeof ZodApplicationFormSchema>>({
+    resolver: zodResolver(ZodApplicationFormSchema),
+    mode: "onChange", // Real-time validation feedback
+  });
 
-    formData.append("coverLetter", data.cover_letter);
-    formData.append("email", data.email);
-    formData.append("phone", data.name);
+  // When a valid file is selected, update the form field "resume"
+  useEffect(() => {
+    if (theFile) {
+      setValue("resume", theFile, { shouldValidate: true });
+    }
+  }, [theFile, setValue]);
+
+  const onFinish: SubmitHandler<
+    z.infer<typeof ZodApplicationFormSchema>
+  > = async (data) => {
+    try {
+      const { cover_letter, email, name, resume } = data;
+
+      const formData = new FormData();
+      formData.append("file", resume);
+      formData.append("jobId", jobId);
+
+      formData.append("coverLetter", cover_letter);
+      formData.append("email", email);
+      formData.append("phone", name);
+      for (const [key, value] of formData.entries()) {
+        console.log(key, value);
+      }
+      toast.success("Application submitted successfully");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("Error submitting form");
+    } finally {
+      reset();
+      setTheFile(null);
+      setFileName(null);
+      setIsModalOpen(false);
+    }
   };
+
+  // enabling file drag and drop
   const handleDrop = (event: React.DragEvent<HTMLLabelElement>) => {
     event.preventDefault();
     setDragging(false);
@@ -90,7 +114,7 @@ const AppliciationForm = ({ name, jobId }: props) => {
       }
     } else {
       toast("error", {
-        description: "Only PDF files are allowed.",
+        description: "Only pdf and word document files are allowed.",
         action: {
           onClick: () => toast.dismiss(),
           label: "Dismiss",
@@ -234,6 +258,9 @@ const AppliciationForm = ({ name, jobId }: props) => {
                 className="hidden"
                 onChange={handleFileChange}
               />
+              {errors.resume && (
+                <p>{errors.resume.message || "resume required"}</p>
+              )}
             </div>
             <div className="flex  items-center gap-2">
               <Button
