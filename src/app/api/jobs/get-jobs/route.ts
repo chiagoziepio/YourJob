@@ -59,7 +59,10 @@ export async function GET(request: NextRequest) {
       {
         msg: "Job retrieved successfully",
         data: jobs,
-        count: jobs.length,
+        count:
+          search || jobmodeQuery || loactionQuery || salary
+            ? jobs.length
+            : allJobs,
         hasMore,
         hasPrevious,
       },

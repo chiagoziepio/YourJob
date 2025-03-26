@@ -1,6 +1,9 @@
 The Project Name is "YourJob".
 The project was created by NDUAGUBA CHIAGOZIE CHRISTOPBHER, with email address : christopherpaddy2017@gmail.com
 
+Setup Instruction
+The project was created using the npx command :npx create-next-app
+
 Resources
 The Ui designed used in the project was gotten from the internet.
 A picture of the Ui design can be found in the project public folder.
