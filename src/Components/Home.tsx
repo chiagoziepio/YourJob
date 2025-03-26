@@ -44,6 +44,7 @@ const Jobs = () => {
               setIsDrawerOpen={setIsDrawerOpen}
               setSalary={setSalary}
               setJobMode={setJobMode}
+              location={location}
             />
           </div>
           {isLoading ? (

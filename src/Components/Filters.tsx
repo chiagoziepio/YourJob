@@ -11,6 +11,7 @@ interface Props {
   setIsDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setSalary: React.Dispatch<React.SetStateAction<string>>;
   setJobMode: React.Dispatch<React.SetStateAction<number | string>>;
+  location: string;
 }
 const Filters = ({
   search,
@@ -20,6 +21,7 @@ const Filters = ({
   setIsDrawerOpen,
   setSalary,
   setJobMode,
+  location,
 }: Props) => {
   return (
     <div className="bg-white dark:bg-black/45 p-4 flex justify-between items-center">
@@ -35,7 +37,7 @@ const Filters = ({
           />
         </div>
         <div className="hidden lg:block">
-          <LocationFilter setLocation={setLocation} />
+          <LocationFilter setLocation={setLocation} location={location} />
         </div>
       </div>
     </div>

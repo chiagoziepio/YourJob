@@ -12,9 +12,10 @@ import { useLazyGetJobLocationQuery } from "@/lib/Redux/Features/AppSlice";
 
 interface props {
   setLocation: React.Dispatch<React.SetStateAction<string>>;
+  location: string;
 }
 
-const LocationFilter = ({ setLocation }: props) => {
+const LocationFilter = ({ setLocation, location }: props) => {
   const [page, setPage] = useState(0);
   const [alllocations, setAllLocation] = useState<string[]>([]);
   const [getLocation, { data, isLoading, isFetching }] =
@@ -70,11 +71,19 @@ const LocationFilter = ({ setLocation }: props) => {
           onClick={() => setLocation("")}
           className="cursor-pointer"
         >
-          All
+          <p className={`${!location && "bg-gray-400 p-1 w-full rounded-sm"}`}>
+            All
+          </p>
         </DropdownMenuItem>
-        {alllocations.map((location, index) => (
-          <DropdownMenuItem onClick={() => setLocation(location)} key={index}>
-            {location}
+        {alllocations.map((loca, index) => (
+          <DropdownMenuItem onClick={() => setLocation(loca)} key={index}>
+            <p
+              className={`${
+                location === loca && "bg-gray-400 p-1 w-full rounded-sm"
+              }`}
+            >
+              {loca}
+            </p>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
